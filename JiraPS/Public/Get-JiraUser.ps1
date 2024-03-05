@@ -47,13 +47,13 @@ function Get-JiraUser {
         # Construct URI based on parameters
         if ($AssignableToProject) {
             $ProjectObject = Get-JiraProject -Project $AssignableToProject -ErrorAction Stop
-            $searchResourceUri = "$server/rest/api/2/user/assignable/search?query={0}&project=$($ProjectObject.Key)"
+            $searchResourceUri = "$server/rest/api/3/user/assignable/search?query={0}&project=$($ProjectObject.Key)"
         } else {
-            $searchResourceUri = "$server/rest/api/2/user/search?query={0}"
+            $searchResourceUri = "$server/rest/api/3/user/search?query={0}"
         }
 
         # Exact URI for user lookup
-        $exactResourceUri = "$server/rest/api/2/user?accountId={0}"
+        $exactResourceUri = "$server/rest/api/3/user?accountId={0}"
 
         # Append additional parameters if specified
         if ($IncludeInactive) {
