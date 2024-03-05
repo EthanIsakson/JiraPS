@@ -3,7 +3,7 @@ external help file: JiraPS-help.xml
 Module Name: JiraPS
 online version: https://atlassianps.org/docs/JiraPS/commands/Get-JiraUser/
 locale: en-US
-schema: 2.0.0
+schema: 3.0.0
 layout: documentation
 permalink: /docs/JiraPS/commands/Get-JiraUser/
 ---
@@ -21,16 +21,16 @@ Returns a user from Jira
 Get-JiraUser [-Credential <PSCredential>] [<CommonParameters>]
 ```
 
-### ByUserName
+### ByQuery
 
 ```powershell
-Get-JiraUser [-UserName] <String[]> [-IncludeInactive] [[-MaxResults] <UInt32>] [[-Skip] <UInt64>] [-Credential <PSCredential>] [-Exact] [<CommonParameters>]
+Get-JiraUser [-Querystring] <String[]> [-AssignableToProject <String>] [-MaxResults <UInt32>] [-Skip <UInt64>] [-IncludeInactive] [-Credential <PSCredential>] [<CommonParameters>]
 ```
 
-### ByInputObject
+### ByUserID
 
 ```powershell
-Get-JiraUser [-InputObject] <Object[]> [-IncludeInactive] [-Credential <PSCredential>] [-Exact] [<CommonParameters>]
+Get-JiraUser [-AccountId] <String[]> [-Credential <PSCredential>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -42,10 +42,10 @@ This function returns information regarding a specified user from Jira.
 ### EXAMPLE 1
 
 ```powershell
-Get-JiraUser -UserName user1
+Get-JiraUser -Querystring user1
 ```
 
-Returns information about all users with username like user1
+Returns information about all users with emailaddress,displayname like user1
 
 ### EXAMPLE 2
 
@@ -66,29 +66,21 @@ This example returns the JIRA user that is executing the command.
 ### EXAMPLE 4
 
 ```powershell 
-Get-JiraUser -UserName user1 -Exact
+Get-JiraUser -AccountID "47935-c458cd-s84h3"
 ```
 
-Returns information about user user1
-
-### EXAMPLE 5
-
-```powershell
-Get-JiraUser -UserName ""
-```
-
-Returns information about all users. The empty string "" matches all users.
+Returns information about user with accountID 47935-c458cd-s84h3
 
 ## PARAMETERS
 
-### -UserName
+### -Querystring
 
-Name of the user to search for.
+Query string to search for users.
 
 ```yaml
 Type: String[]
-Parameter Sets: ByUserName
-Aliases: User, Name
+Parameter Sets: ByQuery
+Aliases: Query
 
 Required: True
 Position: 1
@@ -97,36 +89,37 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -InputObject
+### -AssignableToProject
 
-User Object of the user.
-
-```yaml
-Type: Object[]
-Parameter Sets: ByInputObject
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Exact
-
-Limits the search to users where the username is exactly the term searched for.
+Key of the project to which users should be assignable.
 
 ```yaml
-Type: Switch
-Parameter Sets: ByUserName, ByInputObject
-Aliases:
+Type: String
+Parameter Sets: ByQuery
+Aliases: ProjectAssignmentKey
 
 Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
+```
+
+### -AccountId
+
+Account ID of the user.
+
+```yaml
+Type: String[]
+Parameter Sets: ByUserID
+Aliases: UserID
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+
 ```
 
 ### -IncludeInactive
@@ -207,7 +200,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ### [String[]]
 
-Username, name, or e-mail address
+DisplayName, name, or e-mail address
 
 ## OUTPUTS
 

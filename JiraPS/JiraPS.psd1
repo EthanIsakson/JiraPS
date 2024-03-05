@@ -4,7 +4,7 @@
     RootModule        = 'JiraPS.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '2.14'
+    ModuleVersion     = '3.0'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -25,7 +25,7 @@
     Description       = 'Windows PowerShell module to interact with Atlassian JIRA'
 
     # Minimum version of the Windows PowerShell engine required by this module
-    PowerShellVersion = '3.0'
+    PowerShellVersion = '2.15'
 
     # Name of the Windows PowerShell host required by this module
     # PowerShellHostName = ''
