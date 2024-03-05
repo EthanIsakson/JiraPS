@@ -93,7 +93,8 @@ function New-JiraIssue {
         }
 
         if ($PSCmdlet.MyInvocation.BoundParameters.ContainsKey("Reporter")) {
-            $requestBody["reporter"] = @{"name" = "$Reporter"}
+            $ReporterObj = Get-JiraUser $Reporter -Verbose:$VerbosePreference
+            $requestBody["reporter"] = @{"name" = "$($ReporterObj.accountId)"}
         }
 
         if ($Parent) {
