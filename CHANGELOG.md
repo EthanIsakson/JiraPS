@@ -2,6 +2,13 @@
 
 ## [NEXT VERSION] - YYYY-MM-DD
 
+## [2.15] - 2024-03-04
+
+### Changed
+
+- Adjusted Get-JiraUser to support query by username/email/displayname. Added 
+  check to New-JiraIssue to work with reporter username.
+
 ## [2.14] - 2020-03-28
 
 ### Changed
