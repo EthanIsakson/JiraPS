@@ -2,6 +2,14 @@
 
 ## [NEXT VERSION] - YYYY-MM-DD
 
+## [2.16] - 2024-03-06
+
+### Added
+
+-Get-JiraServiceDesk, Get-JiraRequestType, Get-JiraCustomer and New-JiraSDIssue. This allows me to 
+ create issues/requests via ServiceDesk API and set Request Type which apparently is unsupported from
+ Jira Cloud Platform.
+
 ## [2.15] - 2024-03-04
 
 ### Changed
