@@ -69,7 +69,8 @@ function New-JiraSDIssue {
             raiseOnBehalfOf = "$($ReporterObj.accountId)"
         } | ConvertTo-Json -Compress
         # If other optional fields were specified, add them to the hashtable
-        Invoke-RestMethod -ContentType 'application/json' -Method Post -Uri $Uri -Body $requestBody -WebSession $(Get-JiraSession).WebSession
+        $Issue = Invoke-RestMethod -ContentType 'application/json' -Method Post -Uri $Uri -Body $requestBody -WebSession $(Get-JiraSession).WebSession
+        Write-Output (Get-JiraIssue $Issue.issueKey)
     }
     end {
         Write-Verbose "Jira customer retrieval complete."
